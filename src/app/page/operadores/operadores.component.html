@@ -1,0 +1,6 @@
+<ul>
+  <ng-container *ngFor="let imp of imperadores">
+    <li><h1>{{imp?.nome}}</h1></li>
+    <img *ngIf="imp?.image" [src]="imp?.image">
+  </ng-container>
+</ul>
