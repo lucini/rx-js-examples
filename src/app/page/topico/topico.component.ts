@@ -31,8 +31,8 @@ export class TopicoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.topicoComComportamento.asObservable().subscribe(value => this.ladoA = of(value));
-    this.topicoComComportamento.asObservable().subscribe(value => this.ladoB = of(value));
+    this.ladoA = this.topicoComComportamento.asObservable();
+    this.ladoB = this.topicoComComportamento.asObservable();
     this.topicoComComportamento.asObservable().subscribe(value => this.ladoC = of(value));
     this.topicoComComportamento.asObservable().subscribe(value => this.ladoD = of(value));
   }
