@@ -1,12 +1,19 @@
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 
 export abstract class BaseService<T> {
-  protected constructor(protected http: HttpClient, protected url: string) {
+  private _lista = ['Caius', 'Lucini'];
+
+  protected constructor() {
   }
 
-  findAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.url);
+  findAll(): Observable<any> {
+    return of(this._lista);
   }
 
+
+  findById(id: number): Observable<any> {
+    return of('OK');
+  }
+s
 }
