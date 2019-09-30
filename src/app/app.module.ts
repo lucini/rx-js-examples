@@ -7,12 +7,14 @@ import {HttpClientModule} from "@angular/common/http";
 import {TopicoComponent} from './page/topico/topico.component';
 import {OperadoresComponent} from './page/operadores/operadores.component';
 import {FormsModule} from "@angular/forms";
+import {HomeComponent} from "./page/home/home.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     TopicoComponent,
-    OperadoresComponent
+    OperadoresComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

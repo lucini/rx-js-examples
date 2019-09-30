@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
 })
 export class TopicoComponent implements OnInit, OnDestroy {
   topicoComComportamento = new BehaviorSubject<string>("Texto Inicial");
-  topico = new Subject<number>();
+  topico = new Subject<void>();
 
   ladoA: Observable<string>;
   ladoB: Observable<string>;
@@ -17,9 +17,11 @@ export class TopicoComponent implements OnInit, OnDestroy {
   ladoD: Observable<string>;
   ladoDeFora: Observable<string>;
 
+  valor = 0;
+
   constructor() {
-    this.topico.next(1);
-    this.topico.pipe(map(val => `VALOR: ${val}`)).subscribe(texto => this.ladoDeFora = of(texto));
+    this.topico.next();
+    this.topico.pipe(map(() => `VALOR: ${++this.valor}`)).subscribe(texto => this.ladoDeFora = of(texto));
   }
 
   ngOnDestroy(): void {
@@ -35,7 +37,7 @@ export class TopicoComponent implements OnInit, OnDestroy {
   }
 
   alterar(event): void {
-    this.topico.next(2);
+    this.topico.next();
     this.topicoComComportamento.next(event.target.value);
   }
 }
