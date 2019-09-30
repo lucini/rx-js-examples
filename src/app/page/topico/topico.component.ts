@@ -21,8 +21,13 @@ export class TopicoComponent implements OnInit, OnDestroy {
   valor = 0;
 
   constructor() {
+
     this.topico.next();
-    this.topico.pipe(map(() => `VALOR: ${++this.valor}`)).subscribe(texto => this.ladoDeFora = of(texto));
+
+    this.topico.pipe(
+      map(() => `VALOR: ${++this.valor}`)
+    ).subscribe(texto => this.ladoDeFora = of(texto));
+
   }
 
   ngOnDestroy(): void {
