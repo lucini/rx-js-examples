@@ -11,11 +11,12 @@ export class TopicoComponent implements OnInit, OnDestroy {
   topicoComComportamento = new BehaviorSubject<string>("Texto Inicial");
   topico = new Subject<void>();
 
+  ladoDeFora: Observable<string>;
+
   ladoA: Observable<string>;
   ladoB: Observable<string>;
   ladoC: Observable<string>;
   ladoD: Observable<string>;
-  ladoDeFora: Observable<string>;
 
   valor = 0;
 
@@ -38,6 +39,7 @@ export class TopicoComponent implements OnInit, OnDestroy {
 
   alterar(event): void {
     this.topico.next();
+
     this.topicoComComportamento.next(event.target.value);
   }
 }
