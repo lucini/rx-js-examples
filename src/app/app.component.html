@@ -1,1 +1,7 @@
 <router-outlet></router-outlet>
+<ul>
+  <ng-container *ngFor="let imp of imperadores">
+    <li >{{imp?.nomeImperial}}</li>
+    <img *ngIf="imp?.image" [src]="imp?.image">
+  </ng-container>
+</ul>
