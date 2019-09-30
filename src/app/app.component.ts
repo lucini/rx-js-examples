@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ImperadorService} from "./service/imperador.service";
 import {Imperador} from "./model/Imperador";
-import {delay, map, mapTo, pluck, single, switchMap, take} from "rxjs/operators";
-import {from, interval, timer} from "rxjs";
+import {pluck, skip, switchMap, take} from "rxjs/operators";
+import {from, Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -17,19 +17,32 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.imperadorService.findAll()
-      .pipe(
-        switchMap(list => from(list)),
-        single( imp => imp.id === 2)
-      )
-      .subscribe(value => this.imperadores.push(value));
+    this.switchAndTakeExample().subscribe(value => this.imperadores.push(value));
+    this.switchAndSkipExample().subscribe(value => this.imperadores.push(value));
+    this.switchAndPluckExample().subscribe(value => console.log(value));
+  }
 
-    this.imperadorService.findAll()
+  private switchAndTakeExample(): Observable<Imperador> {
+    return this.imperadorService.findAll()
       .pipe(
         switchMap(list => from(list)),
-        take(1),
-        pluck( 'nomeImperial')
+        take(3)
+      );
+  }
+
+  private switchAndSkipExample(): Observable<Imperador> {
+    return this.imperadorService.findAll()
+      .pipe(
+        switchMap(list => from(list)),
+        skip(3)
+      );
+  }
+
+  private switchAndPluckExample(): Observable<string> {
+    return this.imperadorService.findAll()
+      .pipe(
+        switchMap(list => from(list)),
+        pluck('nomeImperial')
       )
-      .subscribe(value => console.log(value));
   }
 }
